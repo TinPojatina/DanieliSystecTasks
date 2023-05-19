@@ -1,5 +1,6 @@
 
-CREATE TYPE member_status AS ENUM ('active', 'frequent', 'inactive');
+update TYPE member_status AS ENUM ('active', 'frequent', 'inactive');
+ALTER TYPE member_status ADD VALUE 'frequent';
 CREATE TYPE movie_status AS ENUM ('borrowed', 'not borrowed');
 
 
@@ -25,10 +26,21 @@ CREATE TABLE Rentals (
     userId INT,
     movieId INT,
     dateReserved DATE NOT NULL,
-    dateValidUntil DATE NOT NULL,
+    dateReservedUntil DATE NOT NULL,
     FOREIGN KEY (userId) REFERENCES Members (userId),
     FOREIGN KEY (movieId) REFERENCES Movies (movieId)
 );
+
+CREATE TABLE RentalHistory (
+    rentalId SERIAL PRIMARY KEY,
+    userId INT NOT NULL,
+    movieId INT NOT NULL,
+    dateReserved DATE NOT NULL,
+    dateReturned DATE not NULL,
+    FOREIGN KEY (userId) REFERENCES Members (userId),
+    FOREIGN KEY (movieId) REFERENCES Movies (movieId)
+);
+
 
 -- Populate the Members table
 INSERT INTO Members (name, address, phoneNumber, dateOfJoin, status)
@@ -49,7 +61,7 @@ VALUES
 ('The Matrix', 'Sci-Fi', 1999, 'not borrowed');
 
 -- Populate the Rentals table
-INSERT INTO Rentals (userId, movieId, dateReserved, dateValidUntil)
+INSERT INTO Rentals (userId, movieId, dateReserved, dateReservedUntil)
 VALUES 
 (1, 2, '2023-05-10', '2023-05-17'),
 (3, 4, '2023-05-01', '2023-05-08'),
