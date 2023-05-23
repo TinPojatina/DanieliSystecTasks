@@ -48,6 +48,7 @@ class Program
             Console.Write(new string(' ', spaces));
             Console.Write("*");
 
+            //other rows
             if (row > 1 & row <= rowCount-2)
             {
                 int insideSpaces = (row - 2) * 2 + 1;
@@ -55,6 +56,7 @@ class Program
                 Console.Write("*");
             }
 
+            //bottom row
             if (row == rowCount - 1)
             {
                 int insideSpaces = (row - 2) * 2 + 1;
