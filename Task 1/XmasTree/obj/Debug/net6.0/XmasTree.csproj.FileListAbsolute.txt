@@ -1,0 +1,15 @@
+C:\Users\tinp9\Desktop\Projects\Danielli\DanieliSystecTasks\Task 1\XmasTree\bin\Debug\net6.0\XmasTree.exe
+C:\Users\tinp9\Desktop\Projects\Danielli\DanieliSystecTasks\Task 1\XmasTree\bin\Debug\net6.0\XmasTree.deps.json
+C:\Users\tinp9\Desktop\Projects\Danielli\DanieliSystecTasks\Task 1\XmasTree\bin\Debug\net6.0\XmasTree.runtimeconfig.json
+C:\Users\tinp9\Desktop\Projects\Danielli\DanieliSystecTasks\Task 1\XmasTree\bin\Debug\net6.0\XmasTree.dll
+C:\Users\tinp9\Desktop\Projects\Danielli\DanieliSystecTasks\Task 1\XmasTree\bin\Debug\net6.0\XmasTree.pdb
+C:\Users\tinp9\Desktop\Projects\Danielli\DanieliSystecTasks\Task 1\XmasTree\obj\Debug\net6.0\XmasTree.csproj.AssemblyReference.cache
+C:\Users\tinp9\Desktop\Projects\Danielli\DanieliSystecTasks\Task 1\XmasTree\obj\Debug\net6.0\XmasTree.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\tinp9\Desktop\Projects\Danielli\DanieliSystecTasks\Task 1\XmasTree\obj\Debug\net6.0\XmasTree.AssemblyInfoInputs.cache
+C:\Users\tinp9\Desktop\Projects\Danielli\DanieliSystecTasks\Task 1\XmasTree\obj\Debug\net6.0\XmasTree.AssemblyInfo.cs
+C:\Users\tinp9\Desktop\Projects\Danielli\DanieliSystecTasks\Task 1\XmasTree\obj\Debug\net6.0\XmasTree.csproj.CoreCompileInputs.cache
+C:\Users\tinp9\Desktop\Projects\Danielli\DanieliSystecTasks\Task 1\XmasTree\obj\Debug\net6.0\XmasTree.dll
+C:\Users\tinp9\Desktop\Projects\Danielli\DanieliSystecTasks\Task 1\XmasTree\obj\Debug\net6.0\refint\XmasTree.dll
+C:\Users\tinp9\Desktop\Projects\Danielli\DanieliSystecTasks\Task 1\XmasTree\obj\Debug\net6.0\XmasTree.pdb
+C:\Users\tinp9\Desktop\Projects\Danielli\DanieliSystecTasks\Task 1\XmasTree\obj\Debug\net6.0\XmasTree.genruntimeconfig.cache
+C:\Users\tinp9\Desktop\Projects\Danielli\DanieliSystecTasks\Task 1\XmasTree\obj\Debug\net6.0\ref\XmasTree.dll
