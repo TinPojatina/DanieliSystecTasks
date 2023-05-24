@@ -36,11 +36,9 @@ public class Program
 
     static void DisplayBoxes(List<Box> boxes)
     {
-        int boxCount = 0;
-        foreach (Box box in boxes)
+        for (int i = 0; i < boxes.Count; i++)
         {
-            boxCount++;
-            Console.WriteLine($"Box {boxCount}: Length={box.Length}, Width={box.Width}, Height={box.Height}");
+            Console.WriteLine($"Box {i + 1}: Length={boxes[i].Length}, Width={boxes[i].Width}, Height={boxes[i].Height}");
         }
     }
 
