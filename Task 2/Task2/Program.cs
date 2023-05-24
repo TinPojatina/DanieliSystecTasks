@@ -4,29 +4,16 @@ using System.Collections.Generic;
 using System.Linq;
 using Task2;
 
-public class Box
-{
-    public int Length { get; set; }
-    public int Width { get; set; }
-    public int Height { get; set; }
-}
-
 public class Program
 {
     public static void Main(string[] args)
     {
         List<Box> list = GenerateBoxes();
-        foreach (Box box in list)
-        {
-            Console.Write($"({box.Length},{box.Width},{box.Height}) ");
-        }
-        List<List<Box>> maxStacking = FindMaxHeightStacking(list);
-        List<List<Box>> minPiles = FindMinPiles(list);
-        // Print the stacking configuration
-        Console.WriteLine("Kombinacija hrpe:");
-        PrintStacking(maxStacking);
-        Console.WriteLine("Kombinacija sa najmanjim brojem hrpa:");
-        PrintStacking(minPiles);
+        DisplayBoxes(list);
+        List<List<Box>> piles = SortBoxesIntoPiles(list);
+        Console.WriteLine("\nPiles of Boxes:");
+        DisplayPiles(piles);
+
     }
 
     public static List<Box> GenerateBoxes()
@@ -34,7 +21,7 @@ public class Program
         Random random = new Random();
         List<Box> boxes = new List<Box>();
 
-        // Generate 10 boxes with random dimensions
+        // generate boxes
         for (int i = 0; i < 10; i++)
         {
             int length = random.Next(1, 11);
@@ -47,87 +34,56 @@ public class Program
         return boxes;
     }
 
-
-    public static List<List<Box>> FindMaxHeightStacking(List<Box> boxes)
+    static void DisplayBoxes(List<Box> boxes)
     {
-        List<List<Box>> stacking = new List<List<Box>>();
-        stacking.Add(new List<Box>());
-
-        // Sort the boxes by height in descending order
-        foreach (Box box in boxes.OrderByDescending(b => b.Height))
+        for (int i = 0; i < boxes.Count; i++)
         {
-            List<Box> currentStack = null;
-
-            // Check if the box can be added to any existing stack
-            foreach (List<Box> stack in stacking)
-            {
-                if (stack.All(b => b.Length >= box.Length && b.Width >= box.Width))
-                {
-                    // Find the stack with the maximum height
-                    if (currentStack == null || stack.Sum(b => b.Height) > currentStack.Sum(b => b.Height))
-                        currentStack = stack;
-                }
-            }
-
-            if (currentStack != null)
-                currentStack.Add(box);
-            else
-            {
-                // Create a new stack for the box
-                List<Box> newStack = new List<Box>();
-                newStack.Add(box);
-                stacking.Add(newStack);
-            }
+            Console.WriteLine($"Box {i + 1}: Length={boxes[i].Length}, Width={boxes[i].Width}, Height={boxes[i].Height}");
         }
-        Console.WriteLine(stacking);
-        return stacking;
     }
-    public static List<List<Box>> FindMinPiles(List<Box> boxes)
+
+
+    static List<List<Box>> SortBoxesIntoPiles(List<Box> boxes)
     {
-        List<List<Box>> minPiles = new List<List<Box>>();
+        List<List<Box>> piles = new List<List<Box>>();
+        piles.Add(new List<Box>() { boxes[0] });
 
-        // Sort the boxes by height in descending order
-        foreach (Box box in boxes.OrderByDescending(b => b.Height))
+        for (int i = 1; i < boxes.Count; i++)
         {
-            bool addedToExistingPile = false;
+            bool placed = false;
 
-            // Check if the box can be added to any existing pile
-            foreach (List<Box> pile in minPiles)
+            foreach (List<Box> pile in piles)
             {
-                if (pile.All(b => b.Length >= box.Length && b.Width >= box.Width))
+                Box topBox = pile[pile.Count - 1];
+                if (boxes[i].Length <= topBox.Length && boxes[i].Width <= topBox.Width)
                 {
-                    pile.Add(box);
-                    addedToExistingPile = true;
+                    pile.Add(boxes[i]);
+                    placed = true;
                     break;
                 }
             }
 
-            if (!addedToExistingPile)
+            if (!placed)
             {
-                // Create a new pile for the box
-                List<Box> newPile = new List<Box>();
-                newPile.Add(box);
-                minPiles.Add(newPile);
+                List<Box> newPile = new List<Box>() { boxes[i] };
+                piles.Add(newPile);
             }
         }
-
-        return minPiles;
+        return piles;
     }
 
-
-    public static void PrintStacking(List<List<Box>> stacking)
+    static void DisplayPiles(List<List<Box>> piles)
     {
-        // Print the stacking configuration
-        foreach (List<Box> stack in stacking)
+        int pileCount = 1;
+        foreach (List<Box> pile in piles)
         {
-            Console.Write("Stack: ");
-
-            foreach (Box box in stack)
+            Console.WriteLine($"Pile {pileCount}:");
+            foreach (Box box in pile)
             {
-                Console.Write($"({box.Length},{box.Width},{box.Height}) ");
+                Console.WriteLine($"  Box: Length={box.Length}, Width={box.Width}, Height={box.Height}");
             }
-
-            Console.WriteLine();
+            pileCount++;
         }
     }
+
 }
