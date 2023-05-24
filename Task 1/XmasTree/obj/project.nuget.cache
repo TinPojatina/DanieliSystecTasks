@@ -1,13 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "ScEaVJQz3TN5K89IlDytgOQHxA2RYByfYfVrzTRqNQe/OT1AF96tH3nlLeM2qWg9sxpBvTkef3vTLDaMh7LIUg==",
+  "dgSpecHash": "Nbmx4Ivt8OVNfsnzfzh8WasKk+iHY2cehTdWFaeCrt/NPzqUvXW+MFXTyvQH8k7eyjTr57tsh6XpXyEGd6fQQg==",
   "success": true,
   "projectFilePath": "C:\\Users\\tinp9\\Desktop\\Projects\\Danielli\\DanieliSystecTasks\\Task 1\\XmasTree\\XmasTree.csproj",
-  "expectedPackageFiles": [
-    "C:\\Users\\tinp9\\.nuget\\packages\\microsoft.netcore.app.ref\\6.0.15\\microsoft.netcore.app.ref.6.0.15.nupkg.sha512",
-    "C:\\Users\\tinp9\\.nuget\\packages\\microsoft.windowsdesktop.app.ref\\6.0.15\\microsoft.windowsdesktop.app.ref.6.0.15.nupkg.sha512",
-    "C:\\Users\\tinp9\\.nuget\\packages\\microsoft.aspnetcore.app.ref\\6.0.15\\microsoft.aspnetcore.app.ref.6.0.15.nupkg.sha512",
-    "C:\\Users\\tinp9\\.nuget\\packages\\microsoft.netcore.app.host.win-x64\\6.0.15\\microsoft.netcore.app.host.win-x64.6.0.15.nupkg.sha512"
-  ],
+  "expectedPackageFiles": [],
   "logs": []
 }
