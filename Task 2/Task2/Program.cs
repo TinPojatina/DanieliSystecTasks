@@ -1,89 +1,80 @@
 ﻿using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using Task2;
 
 public class Program
 {
+    private static readonly Random Random = new Random();
+
     public static void Main(string[] args)
     {
-        List<Box> list = GenerateBoxes();
-        DisplayBoxes(list);
-        List<List<Box>> piles = SortBoxesIntoPiles(list);
+        var boxes = GenerateBoxes();
+        DisplayBoxes(boxes);
+        var piles = SortBoxesIntoPiles(boxes);
         Console.WriteLine("\nPiles of Boxes:");
         DisplayPiles(piles);
-
     }
 
     public static List<Box> GenerateBoxes()
     {
-        Random random = new Random();
-        List<Box> boxes = new List<Box>();
-
-        // generate boxes
-        for (int i = 0; i < 10; i++)
+        return Enumerable.Range(0, 10).Select(_ => new Box
         {
-            int length = random.Next(1, 11);
-            int width = random.Next(1, 11);
-            int height = random.Next(1, 11);
-            Box box = new Box { Length = length, Width = width, Height = height };
-            boxes.Add(box);
-        }
-
-        return boxes;
+            Length = Random.Next(1, 11),
+            Width = Random.Next(1, 11),
+            Height = Random.Next(1, 11)
+        }).ToList();
     }
 
-    static void DisplayBoxes(List<Box> boxes)
+    static void DisplayBoxes(IEnumerable<Box> boxes)
     {
-        for (int i = 0; i < boxes.Count; i++)
+        var boxCount = 1;
+        foreach (var box in boxes)
         {
-            Console.WriteLine($"Box {i + 1}: Length={boxes[i].Length}, Width={boxes[i].Width}, Height={boxes[i].Height}");
+            Console.WriteLine($"Box {boxCount}: Length={box.Length}, Width={box.Width}, Height={box.Height}");
+            boxCount++;
         }
     }
-
 
     static List<List<Box>> SortBoxesIntoPiles(List<Box> boxes)
     {
-        List<List<Box>> piles = new List<List<Box>>();
-        piles.Add(new List<Box>() { boxes[0] });
+        if (boxes == null)
+            throw new ArgumentNullException(nameof(boxes));
 
-        for (int i = 1; i < boxes.Count; i++)
+        var piles = new List<List<Box>> { new List<Box> { boxes[0] } };
+
+        for (var i = 1; i < boxes.Count; i++)
         {
-            bool placed = false;
-
-            foreach (List<Box> pile in piles)
+            var placed = piles.Any(pile =>
             {
-                Box topBox = pile[pile.Count - 1];
-                if (boxes[i].Length <= topBox.Length && boxes[i].Width <= topBox.Width)
-                {
-                    pile.Add(boxes[i]);
-                    placed = true;
-                    break;
-                }
-            }
+                var topBox = pile.Last();
+                if (boxes[i].Length > topBox.Length || boxes[i].Width > topBox.Width)
+                    return false;
+
+                pile.Add(boxes[i]);
+                return true;
+            });
 
             if (!placed)
             {
-                List<Box> newPile = new List<Box>() { boxes[i] };
+                var newPile = new List<Box> { boxes[i] };
                 piles.Add(newPile);
             }
         }
         return piles;
     }
 
-    static void DisplayPiles(List<List<Box>> piles)
+    static void DisplayPiles(IEnumerable<List<Box>> piles)
     {
-        int pileCount = 1;
-        foreach (List<Box> pile in piles)
+        var pileCount = 1;
+        foreach (var pile in piles)
         {
             Console.WriteLine($"Pile {pileCount}:");
-            foreach (Box box in pile)
+            foreach (var box in pile)
             {
                 Console.WriteLine($"  Box: Length={box.Length}, Width={box.Width}, Height={box.Height}");
             }
             pileCount++;
         }
     }
-
 }
